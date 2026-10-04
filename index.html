@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prendi il cerchio!</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 30px;
+}
+
+#game {
+    width: 90%;
+    max-width: 700px;
+    height: 500px;
+    margin: 20px auto;
+    background: #222;
+    border: 3px solid white;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+#target {
+    width: 60px;
+    height: 60px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+}
+
+#score {
+    font-size: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎯 Prendi il cerchio!</h1>
+<p>Clicca il cerchio rosso più volte che puoi.</p>
+
+<div id="score">Punteggio: 0</div>
+
+<div id="game">
+    <div id="target"></div>
+</div>
+
+<script>
+let score = 0;
+
+const target = document.getElementById("target");
+const game = document.getElementById("game");
+const scoreText = document.getElementById("score");
+
+function moveTarget() {
+    const maxX = game.clientWidth - target.clientWidth;
+    const maxY = game.clientHeight - target.clientHeight;
+
+    target.style.left = Math.random() * maxX + "px";
+    target.style.top = Math.random() * maxY + "px";
+}
+
+target.addEventListener("click", function() {
+    score++;
+    scoreText.innerText = "Punteggio: " + score;
+    moveTarget();
+});
+
+moveTarget();
+</script>
+
+</body>
+</html>
